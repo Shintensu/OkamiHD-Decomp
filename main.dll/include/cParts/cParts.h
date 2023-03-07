@@ -4,6 +4,7 @@
 
 class cParts
 {
+public:
 	virtual ~cParts();
 
 	char field_1[8];
