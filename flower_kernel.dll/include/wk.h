@@ -274,8 +274,8 @@ namespace wk
 		void _MemoryFreeHeap();
 		void _MemoryRealloc();
 
-		cHeap* MemDefaultHeapPtr;
-		cSystemHeap* SystemHeap;
+		extern cHeap* MemDefaultHeapPtr;
+		extern cSystemHeap* SystemHeap;
 
 		void hxMemSystemClear();
 		void hxMemSystemInitialize();
