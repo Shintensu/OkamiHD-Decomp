@@ -84,3 +84,30 @@ namespace hx
 
 	}
 }
+
+void _Init_thread_header(int* param_1);
+
+void LAB_180001997(void)
+
+{
+	__instance = hx::KernelSingletonObject<class_wk::cSystemEvent>::vftable;
+	return;
+}
+
+wk::cSystemEvent* __cdecl hx::KernelSingletonObject<wk::cSystemEvent>::getSingletonInstance(void)
+{
+	/* 0x2207 1043 ?getSingletonInstance@?$KernelSingletonObject@VcSystemEvent@wk@@@hx@@SAPEAVcS ystemEvent@wk@@XZ */
+
+	if (*(int*)(*(longlong*)((longlong)ThreadLocalStoragePointer + (ulonglong)_tls_index * 8) +	0x104) < public static wk::cSystemEvent* cdecl_hx::KernelSingletonObject<wk::cSystemEvent>::getSingletonInstance(void)::2::thread_safe_static_guard{0})
+	{
+		_Init_thread_header(&public static wk::cSystemEvent* hx::KernelSingletonObject<wk::cSystemEvent>::getSingletonInstance(void)::2::thread_safe_static_guard{0});
+		if (public static wk::cSystemEvent* hx::KernelSingletonObject<wk::cSystemEvent>::getSingletonInstance(void)::2::thread_safe_static_guard{0} == -1) 
+		{
+			_DAT_180126c50 = 0;
+			__instance = wk::cSystemEvent::vftable;
+			atexit(&LAB_180001997);
+			_Init_thread_footer(&`public:_static_class_wk::cSystemEvent* ___ptr64___cdecl_hx::KernelSinglet onObject<class_wk::cSystemEvent>::getSingletonInstance(void)::2::thread_safe_static_guard{0});
+		}
+	}
+	return &public static wk::cSystemEvent* cdecl_hx::KernelSingletonObject<class_wk::cSystemEvent>::getSingletonInstance(void)::2::_instance;
+}
