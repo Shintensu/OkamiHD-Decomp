@@ -24,9 +24,21 @@
     <ClInclude Include="include\m2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\wk\wkMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\wk\wkMem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

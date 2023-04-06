@@ -10,11 +10,11 @@ wk::mem::cHeap DefaultHeap;
 
 BOOL __cdecl DllMain(HINSTANCE hinstDLL, DWORD fdwReason)
 {
-    if (fdwReason == 0) 
+    if (fdwReason == DLL_PROCESS_DETACH)
     {
         ControllerManagerDestructor();
     }
-    else if (fdwReason == 1) 
+    else if (fdwReason == DLL_PROCESS_ATTACH)
     {
         dll_handle = hinstDLL;
         ControllerManagerContructor(1, ".");
