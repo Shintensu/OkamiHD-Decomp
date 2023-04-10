@@ -4,9 +4,9 @@
 #include "wk.h"
 
 
-HINSTANCE dll_handle;
+HINSTANCE g_DllHandle;
 
-wk::mem::cHeap DefaultHeap;
+wk::mem::cHeap defaultHeap;
 
 BOOL __cdecl DllMain(HINSTANCE hinstDLL, DWORD fdwReason)
 {
@@ -16,7 +16,7 @@ BOOL __cdecl DllMain(HINSTANCE hinstDLL, DWORD fdwReason)
     }
     else if (fdwReason == DLL_PROCESS_ATTACH)
     {
-        dll_handle = hinstDLL;
+        g_DllHandle = hinstDLL;
         ControllerManagerContructor(1, ".");
         return 1;
     }
@@ -85,20 +85,20 @@ void OSInitialize()
 
 void ControllerManagerContructor(long long param_1, const char* param_2)
 {
-    m2::system::ConfigManager* this;
-    m2::input::ControllerManager* this_00;
+    m2::system::ConfigManager* configManagerSingleton;
+    m2::input::ControllerManager* controllerManagerSingleton;
 
-    wk::mem::cHeap::createHeap(&DefaultHeap, 0x4000000, 0x0, 2);
-    wk::mem::MemDefaultHeapPtr = &DefaultHeap;
+    defaultHeap.createHeap(0x4000000, nullptr, wk::mem::DefaultHeap);
+    wk::mem::MemDefaultHeapPtr = &defaultHeap;
     if ((param_1 != 0) && (param_2 != 0x0)) 
     {
         hx::File::setPathRoot(param_2);
     }
     OSInitialize();
-    this = hx::KernelSingletonObject<m2::system::ConfigManager>::getSingletonInstance();
-    m2::system::ConfigManager::Initialize(this);
-    this_00 = hx::KernelSingletonObject<m2::input::ControllerManager>::getSingletonInstance();
-    m2::input::ControllerManager::Initialize(this_00);
+    configManagerSingleton = hx::KernelSingletonObject<m2::system::ConfigManager>::getSingletonInstance();
+    m2::system::ConfigManager::Initialize(configManagerSingleton);
+    controllerManagerSingleton = hx::KernelSingletonObject<m2::input::ControllerManager>::getSingletonInstance();
+    m2::input::ControllerManager::Initialize(controllerManagerSingleton);
     return;
 }
 
@@ -116,4 +116,32 @@ void ControllerManagerDestructor()
     OSFinalize();
     wk::mem::cHeap::destroy(&DefaultHeap);
     return;
+}
+
+
+void _Init_thread_header(int* param_1);
+
+void LAB_180001997(void)
+
+{
+	__instance = hx::KernelSingletonObject<class_wk::cSystemEvent>::vftable;
+	return;
+}
+
+wk::cSystemEvent* __cdecl hx::KernelSingletonObject<wk::cSystemEvent>::getSingletonInstance(void)
+{
+	/* 0x2207 1043 ?getSingletonInstance@?$KernelSingletonObject@VcSystemEvent@wk@@@hx@@SAPEAVcS ystemEvent@wk@@XZ */
+
+	if (*(int*)(*(longlong*)((longlong)ThreadLocalStoragePointer + (ulonglong)_tls_index * 8) +	0x104) < public static wk::cSystemEvent* cdecl_hx::KernelSingletonObject<wk::cSystemEvent>::getSingletonInstance(void)::2::thread_safe_static_guard{0})
+	{
+		_Init_thread_header(&public static wk::cSystemEvent* hx::KernelSingletonObject<wk::cSystemEvent>::getSingletonInstance(void)::2::thread_safe_static_guard{0});
+		if (public static wk::cSystemEvent* hx::KernelSingletonObject<wk::cSystemEvent>::getSingletonInstance(void)::2::thread_safe_static_guard{0} == -1) 
+		{
+			_DAT_180126c50 = 0;
+			__instance = wk::cSystemEvent::vftable;
+			atexit(&LAB_180001997);
+			_Init_thread_footer(&`public:_static_class_wk::cSystemEvent* ___ptr64___cdecl_hx::KernelSinglet onObject<class_wk::cSystemEvent>::getSingletonInstance(void)::2::thread_safe_static_guard{0});
+		}
+	}
+	return &public static wk::cSystemEvent* cdecl_hx::KernelSingletonObject<class_wk::cSystemEvent>::getSingletonInstance(void)::2::_instance;
 }

@@ -4,6 +4,21 @@ namespace wk
 {
 	namespace mem
 	{
+		enum eType
+		{
+
+		};
+		
+		enum M2MemoryProtection
+		{
+			DefaultHeap = 2
+		};
+
+		struct cAllocHeader
+		{
+
+		};
+
 		class cAllocIterator
 		{
 
@@ -19,10 +34,7 @@ namespace wk
 
 		};
 
-		enum eType
-		{
 
-		};
 
 		class cHeapCommon
 		{
@@ -38,36 +50,36 @@ namespace wk
 		class cHeap : cHeapCommon
 		{
 			virtual void conditionalDestructor();
-			virtual void clear();
-			virtual void destroy();
-			virtual void alloc();
-			virtual void free();
-			virtual void postCreate();
-			virtual void free_();
 
-			void addAllocChainFree();
-			void alloc();
-			void alloc_();
-			void callClearCallback();
+		public:
 			cHeap();
-			cHeap(cHeap* otherHeap);
-			void clear();
-			void containsAllocChainFree();
-			void create();
-			void createHeap();
-			void destroy();
-			void free();
-			void free_();
-			void freeFromHeap();
-			void getHeapAddr();
-			void getHeapPtr();
+			cHeap(cHeap const& otherHeap);
+
+			void addAllocChainFree(cAllocHeader* param_1);
+			virtual void* alloc(unsigned __int64 param_1, unsigned int param_2);
+			virtual void clear();
+			void* create(unsigned int param_1, cHeap* param_2, cHeap* param_3);
+			void createHeap(unsigned __int64 param_1, cHeap* param_2, M2MemoryProtection param_3);
+			virtual void destroy();
+			virtual void free(void* param_1);
+			static void freeFromHeap();
+			void* getHeapAddr() const;
+			static cHeap* getHeapPtr(void* param_1);
+			bool isValid() const;
+			cHeap& operator=(cHeap const& otherHeap);
+			void* realloc(void* param_1, unsigned __int64 param_2, unsigned int param_3);
+			bool registerClearCallback(void* param_1, void (__cdecl*)(void* param_2));
+
+		protected:
+			cAllocHeader* alloc_(cAllocHeader* param_1,unsigned __int64 param_2, unsigned int param_3);
+			void callClearCallback();
+			bool containsAllocChainFree(cAllocHeader* param_1);
+			virtual void free_(void* param_1);
+			virtual void postCreate();
+			void removeAllocChainFree(cAllocHeader* param_1);
+
+		private:
 			void init();
-			void isValid();
-			void operator=(cHeap* otherHeap);
-			void postCreate();
-			void realloc();
-			void registerClearCallback();
-			void removeAllocChainFree();
 		};
 
 		class cHeapExpandable : cHeap
@@ -107,7 +119,7 @@ namespace wk
 			void reverse_alloc_();
 		};
 
-		class cSystemHeap : cHeapCommon
+		class cSystemHeap : cHeap
 		{
 			virtual void conditionalDestructor();
 			virtual void clear();
