@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flower_kernel.dll", "flower_kernel.dll\flower_kernel.dll.vcxproj", "{F5EBC864-E5A0-4FC0-AA24-97D41387341F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flower_kernel", "flower_kernel\flower_kernel.dll.vcxproj", "{F5EBC864-E5A0-4FC0-AA24-97D41387341F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "main.dll", "main.dll\main.dll.vcxproj", "{026360E8-C4DA-42F4-AEE1-D72706656547}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "main", "main\main.dll.vcxproj", "{026360E8-C4DA-42F4-AEE1-D72706656547}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "okami.exe", "okami.exe\okami.exe.vcxproj", "{EE404127-7E6B-428D-B43D-2DE1BA66D8B9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "okami", "okami\okami.exe.vcxproj", "{EE404127-7E6B-428D-B43D-2DE1BA66D8B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
