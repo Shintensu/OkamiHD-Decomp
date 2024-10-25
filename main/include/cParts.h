@@ -2,7 +2,7 @@
 
 #include "core.h"
 
-#include "flower_kernel.h"
+#include "flower_kernel/flower_kernel.h"
 
 class MAIN_API cParts
 {
